@@ -37,7 +37,10 @@ class ViewControllerKhansa: UIViewController, UITableViewDataSource, UITableView
         var buttonLeft = UIBarButtonItem(title: "Categories", style: UIBarButtonItemStyle.plain, target: self, action: nil)
         buttonLeft.tintColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         
-        var buttonRight = UIBarButtonItem(title: "Maps", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        var buttonRight = UIBarButtonItem(title: "Maps", style: UIBarButtonItemStyle.plain, target: self, action: #selector(move))
+        
+        
+        
         buttonRight.tintColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         
         
@@ -49,6 +52,29 @@ class ViewControllerKhansa: UIViewController, UITableViewDataSource, UITableView
         self.navigationItem.rightBarButtonItem = buttonRight
         
     }
+    
+//    let tapGesture = UITapGestureRecognizer(target: self, action: Selector(("move")))
+//    buttonRight.addGestureRecognizer(tapGesture)
+    
+
+    
+    
+     func move(_ sender: UITapGestureRecognizer){
+        var sb = UIStoryboard.init(name: "Main", bundle: nil)
+        var vc = sb.instantiateViewController(withIdentifier: "showMapController") as UIViewController
+        
+    
+        present(vc, animated: true, completion: nil)
+    }
+    
+//    let sb = UIStoryboard(name: "Main", bundle: nil)
+//    let vc = sb.instantiateViewController(withIdentifier: "ViewController") as UIViewController
+//    present(vc, animated: true, completion: nil)
+
+//
+//    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"storyboard2" bundle:nil];
+//    [self presentModalViewController:[storyboard instantiateViewControllerWithIdentifier:@"storyboard2initialviewcontroller"] animated:NO];
+    
     //
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "SecondViewSegue", sender: foods[indexPath.row])
@@ -65,19 +91,6 @@ class ViewControllerKhansa: UIViewController, UITableViewDataSource, UITableView
             let foodimage = sender as! String
             destination.imageBig = "\(foodimage)"
             
-            
-            
-            
-            //            if let index = selectedIndex{
-            //
-            ////                let food = foods[index.section]
-            ////                destination.myImage2 = "\(food)"
-            //
-            //
-            //                let foodname = foods[index.section]
-            //
-            //
-            //            }
         }
     }
     
@@ -85,7 +98,6 @@ class ViewControllerKhansa: UIViewController, UITableViewDataSource, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
 }
 
